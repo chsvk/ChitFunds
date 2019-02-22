@@ -9,7 +9,9 @@ import firebase from 'firebase'
 import {db} from './main'
 import router from './router'
 import {mapMutations} from 'vuex'
+import Utils from '@/Mixins/Utils'
 export default {
+  mixins: [Utils],
   router,
   date(){
     return{
@@ -59,20 +61,6 @@ export default {
     });
   },
   methods: {
-    getToday: function(){
-      var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
-
-            var yyyy = today.getFullYear();
-            if(dd<10){
-                dd='0'+dd;
-            } 
-            if(mm<10){
-                mm='0'+mm;
-            } 
-            return dd;
-    },
     updateInterest: function(){
       db.collection("Interests").where("interestDue", "==", this.getToday()).get().then((snapshot)=>{
       snapshot.forEach((doc)=>{
