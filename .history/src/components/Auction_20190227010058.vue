@@ -54,7 +54,7 @@
                 <th>Actions</th>
             </tr>
             <tr v-for="(g,i) in groups" :key="i">
-                <td><p>{{Month}} [ Month - {{g.monthNumber}} ]</p></td>
+                <td><p>{{Month}} Month - ({{g.monthNumber}})</p></td>
                 <td><p>{{g.name}}</p></td>
                 <td><p>{{g.value}}</p></td>
                 <td><p>{{g.value/g.months}}</p></td>
