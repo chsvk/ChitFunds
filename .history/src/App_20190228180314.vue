@@ -9,8 +9,6 @@ import firebase from 'firebase'
 import {db} from './main'
 import router from './router'
 import {mapActions} from 'vuex'
-// import Members from '@/Data/Members'
-// import Groups from '@/Data/Groups'
 export default {
   router,
   date(){
@@ -22,16 +20,9 @@ export default {
     
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-          // Members.forEach((member)=>{
-          //   db.collection("Members").doc(String(member.mid)).set(member).then(()=>{
-          //     console.log('Doen')
-          //   })
-          // })
-          // Groups.forEach((group)=>{
-          //   db.collection("Groups").doc(group.name).set(group).then(()=>{
-          //     console.log('Added Group')
-          //   })
-          // })
+        firebase.firestore().collection().get().then((doc)=>{
+          console.log(doc);
+        })
           vm.hasOneDayPassed().then((DayPassed)=>{
             if(DayPassed){
               this.fetchTodayPayments();
