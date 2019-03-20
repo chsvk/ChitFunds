@@ -1,7 +1,8 @@
 <template>
     <div class="groups">
         <div class="flex">
-            <h1 class="heading">Daily Book <button @click="previousDailyBook()" class="previous">Previous</button></h1>
+            <h1 class="heading">Daily Book</h1>
+            <button>Previous</button>
         </div>
         
         <table>
@@ -10,8 +11,8 @@
                 <td><button class="add" style="" @click="add(data.mid)">Add</button></td>
             </tr>
             <tr>
-                <datepicker v-model="data.today"></datepicker>
-                <!-- <td>Date</td> -->
+                <!-- <datepicker v-model="data.today"></datepicker> -->
+                <td>Date</td>
                 <td>
                     <div style="display:flex" class="content">
                         <input type="text" placeholder="MID" v-model="data.mid">
@@ -73,7 +74,6 @@ export default {
                 today: '',
                 name: ''
             },
-            customFormatter: 'dd MMM yyyy'
         }
     },
     components: {
@@ -85,19 +85,10 @@ export default {
                 this.data.name = response;
             })
         },
-        previousDailyBook(){
-            this.$router.push({
-                name: 'previousDaily'
-            })
-        },
         add(){
             var vm = this;
-            
-            if(this.data.today){
-                vm.data = {...vm.data, today: vm.formatDate(vm.data.today)}
-            }else{
-                vm.data = {...vm.data, today: this.getDate()}
-            }
+            vm.data = {...vm.data, today: this.getDate()}
+            console.log(this.data.name)
             if(!(this.checkAllFields(this.data)) || (String(this.data.name).includes("No User"))){
                 vm.showIncompleteAlert("Fields Incomplete / User Details Error");
             }else{
@@ -165,11 +156,6 @@ export default {
             color: black;
             padding: 1em;
             margin:1em;
-        }
-
-        .previous{
-            width: 15%;
-            padding: 1em;
         }
     }
 

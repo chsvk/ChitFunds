@@ -1,7 +1,7 @@
 <template>
     <div class="groups">
         <div class="flex">
-            <h1 class="heading">Daily Book <button @click="previousDailyBook()" class="previous">Previous</button></h1>
+            <h1 class="heading">Daily Book <button class="previous">Previous</button></h1>
         </div>
         
         <table>
@@ -85,11 +85,6 @@ export default {
                 this.data.name = response;
             })
         },
-        previousDailyBook(){
-            this.$router.push({
-                name: 'previousDaily'
-            })
-        },
         add(){
             var vm = this;
             
@@ -168,8 +163,7 @@ export default {
         }
 
         .previous{
-            width: 15%;
-            padding: 1em;
+            width: 20%;
         }
     }
 

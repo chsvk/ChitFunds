@@ -4,9 +4,6 @@ export default{
         getDate: function(){
             return String(new Date().toLocaleDateString("en-US")).split('/').join('-')
         },
-        formatDate: function(dateString){
-            return String(new Date(dateString).toLocaleDateString("en-US")).split('/').join('-')
-        },
         checkAllFields: function(data){
             var result = true
             var index = 0

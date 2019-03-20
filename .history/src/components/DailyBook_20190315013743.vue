@@ -1,7 +1,7 @@
 <template>
     <div class="groups">
         <div class="flex">
-            <h1 class="heading">Daily Book <button @click="previousDailyBook()" class="previous">Previous</button></h1>
+            <h1 class="heading">Daily Book</h1>
         </div>
         
         <table>
@@ -10,7 +10,7 @@
                 <td><button class="add" style="" @click="add(data.mid)">Add</button></td>
             </tr>
             <tr>
-                <datepicker v-model="data.today"></datepicker>
+                <datepicker :format="'dd MMM yyyy'" v-model="data.today"></datepicker>
                 <!-- <td>Date</td> -->
                 <td>
                     <div style="display:flex" class="content">
@@ -85,28 +85,19 @@ export default {
                 this.data.name = response;
             })
         },
-        previousDailyBook(){
-            this.$router.push({
-                name: 'previousDaily'
-            })
-        },
         add(){
             var vm = this;
-            
-            if(this.data.today){
-                vm.data = {...vm.data, today: vm.formatDate(vm.data.today)}
-            }else{
-                vm.data = {...vm.data, today: this.getDate()}
-            }
-            if(!(this.checkAllFields(this.data)) || (String(this.data.name).includes("No User"))){
-                vm.showIncompleteAlert("Fields Incomplete / User Details Error");
-            }else{
-                if(confirm('Are You Sure?')){
-                    db.collection("DailyBook").add(vm.data).then(()=>{
-                        vm.showSuccessAlert();
-                    })
-                }  
-            }
+            // vm.data = {...vm.data, today: this.getDate()}
+            console.log(this.data.today)
+            // if(!(this.checkAllFields(this.data)) || (String(this.data.name).includes("No User"))){
+            //     vm.showIncompleteAlert("Fields Incomplete / User Details Error");
+            // }else{
+            //     if(confirm('Are You Sure?')){
+            //         db.collection("DailyBook").add(vm.data).then(()=>{
+            //             vm.showSuccessAlert();
+            //         })
+            //     }  
+            // }
         },
         deleteFromDailyBook(id){
             var vm = this;
@@ -165,11 +156,6 @@ export default {
             color: black;
             padding: 1em;
             margin:1em;
-        }
-
-        .previous{
-            width: 15%;
-            padding: 1em;
         }
     }
 
