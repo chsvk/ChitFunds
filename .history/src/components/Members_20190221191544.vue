@@ -6,7 +6,6 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Due</th>
                 <th>Number</th>
                 <th>Monthly Date</th>
                 <th>Actions</th>
@@ -14,7 +13,6 @@
             <tr v-for="(group, index) in groups" :key="index">
                 <td>{{group.data.mid}}</td>
                 <td>{{group.data.name}}</td>
-                <td>{{group.data.due}}</td>
                 <td>{{group.data.number}}</td>
                 <td>{{group.data.monthlyDate}}</td>
                 <td>
@@ -70,7 +68,7 @@ export default {
     },
     mounted(){var vm = this;
     localStorage.removeItem('temp');
-        db.collection("Members").orderBy("mid").onSnapshot(function(query){
+        db.collection("Members").onSnapshot(function(query){
             vm.groups = [];
             query.forEach(function(doc){
                 var o = {

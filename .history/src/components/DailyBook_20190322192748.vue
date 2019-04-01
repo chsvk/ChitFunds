@@ -8,8 +8,7 @@
             <tr>
                 <td style="width: 15%">Name : {{data.name}}</td>
                 <td><button class="add" style="" @click="add(data.mid)">Add</button></td>
-                <td>{{formatDate(new Date())}}</td>
-                <td>Total - {{getTodayTotal()}}</td>
+                <td>Today-- {{formatDate(new Date())}}: Total - {{getTodayTotal()}}</td>
             </tr>
             <tr>
                 <datepicker v-model="data.today"></datepicker>
@@ -60,7 +59,6 @@ import {db} from '../main';
 import router from '../router'
 import Datepicker from 'vuejs-datepicker';
 import Utils from '@/Mixins/Utils'
-import firebase from 'firebase'
 export default {
     mixins: [Utils],
     data(){

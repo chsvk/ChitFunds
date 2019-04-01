@@ -70,7 +70,7 @@ export default {
     },
     mounted(){var vm = this;
     localStorage.removeItem('temp');
-        db.collection("Members").orderBy("mid").onSnapshot(function(query){
+        db.collection("Members").onSnapshot(function(query){
             vm.groups = [];
             query.forEach(function(doc){
                 var o = {

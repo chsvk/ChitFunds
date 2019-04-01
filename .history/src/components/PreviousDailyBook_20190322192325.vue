@@ -7,7 +7,7 @@
             <h4>Select Date </h4>
             <datepicker v-model="dateSelected"></datepicker>
             <button @click="fetchData()">Fetch</button>
-            <h3 style="margin-left: 1em"> Total On <span style="font-weight: 100"> {{formatDate(dateSelected)}}</span>: <span style="font-weight: 100; margin-left: 0.6em">  {{getTotal()}} </span> </h3>
+            <h3 style="margin-left: 1em"> Total On {{formatDate(dateSelected)}}: {{getTotal()}}</h3>
         </div>
         <table>
             <tr>

@@ -7,7 +7,7 @@
             <h4>Select Date </h4>
             <datepicker v-model="dateSelected"></datepicker>
             <button @click="fetchData()">Fetch</button>
-            <h3 style="margin-left: 1em"> Total On <span style="font-weight: 100"> {{formatDate(dateSelected)}}</span>: <span style="font-weight: 100; margin-left: 0.6em">  {{getTotal()}} </span> </h3>
+            <h3>Todays Total: {{getTotal}}</h3>
         </div>
         <table>
             <tr>
@@ -105,11 +105,12 @@ export default {
                 }
             })
         },
+    },
+    computed: {
         getTotal(){
-            var Total = 0;
+            var Total;
             this.groups.forEach((group)=>{
-                Total = Total + Number(group.chitValue);
-                console.log(Total)
+                Total = Total + group.chitValue;
             })
             return Total;
         }

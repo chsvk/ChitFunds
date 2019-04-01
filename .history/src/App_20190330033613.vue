@@ -11,8 +11,7 @@ import router from './router'
 import {mapActions} from 'vuex'
 import GroupMembers from '@/Data/GroupMembers'
 // import Members from '@/Data/Members'
-// import Groups from '@/Data/Groups'
-import NewMembers from '@/Data/Members2'
+import Groups from '@/Data/Groups'
 export default {
   router,
   date(){
@@ -24,7 +23,7 @@ export default {
     
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-          // NewMembers.forEach((member)=>{
+          // Members.forEach((member)=>{
           //   db.collection("Members").doc(String(member.mid)).set(member).then(()=>{
           //     console.log('Doen')
           //   })
@@ -35,38 +34,27 @@ export default {
           //   })
           // })
           // GroupMembers.forEach((Member)=>{
-          //   var userObject = {
-          //     name: Member.name,
-          //     mid: Member.mid,
-          //     lastMonthPaid: false
-          //   }
-          //   var groupObject;
-          //   // console.log(Member.name)
-          //   for(var i =0; i<Member['No Of Groups']; i++){
-
-          //     if(Object.values(Member)[i+5] != "" && (Member['No Of Groups'] != 0)){
-          //       db.collection("Groups").doc(Object.values(Member)[i+4]).onSnapshot((doc)=>{
-          //       if(doc.exists){
-          //         groupObject = {
-          //         name: doc.data().name,
-          //         started: doc.data().started,
-          //         chitValue: doc.data().value
-          //       }
-          //       console.log(doc.exists);
-          //       console.log(groupObject)
-          //       db.collection("Members").doc(String(userObject.mid)).collection("Groups").doc(groupObject.name).set(groupObject).then(()=>{
-          //         db.collection("Groups").doc(groupObject.name).collection("Members").doc(String(userObject.mid)).set(userObject).then(()=>{
-          //           console.log("Operation Complete")
-          //         })
+          //   Object.keys(Member).forEach((Key)=>{
+          //     if(Key.startsWith("Name of ")){
+          //       // console.log(Member[Key])
+          //       var groupObject;
+          //       console.log("Fetching Group" + Member[Key])
+          //       firebase.firestore().collection("Groups").doc(Member[Key]).get().then((doc)=>{
+          //          groupObject = {
+          //           name: doc.data().name,
+          //           started: doc.data().started,
+          //           chitValue: doc.data().value
+          //         }
           //       })
-          //       }else{
-          //         // console.log(Object.values(Member)[i+5])
-          //       }
-                
-          //     })
           //     }
-          //   }
-
+          //     var userObject = {
+          //       name: Member['Name'],
+          //       mid: Member['Number'],
+          //       careOf: Member['Careof']
+          //     }
+          //   console.log("User Object ", + userObject)
+          //   console.log("Group Object ", + groupObject)
+          //   })
           // })
           vm.hasOneDayPassed().then((DayPassed)=>{
             if(DayPassed){
@@ -86,8 +74,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTodayPayments', 'fetchInterests', 'hasOneDayPassed']),
-  },
-  
+  }
 }
 </script>
 

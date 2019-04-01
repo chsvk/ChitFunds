@@ -3,7 +3,7 @@
         <h1 class="heading">Edit Daily Book</h1>
         <form @submit.prevent="UpdateDaily">
             <h3> MID : {{daily.mid}}</h3>
-            <span>Pick New Date:</span><datepicker :format="customFormat" v-model="daily.today"></datepicker>
+            <span>Pick New Date:</span><datepicker :format="customFormat" v-model="daily.date"></datepicker>
             <input type="text" placeholder="Enter Chit Installement" v-model="daily.chitValue">
             <input type="text" placeholder="Enter Principle" v-model="daily.principle">
             <input type="text" placeholder="Enter Interest" v-model="daily.interest">
@@ -35,7 +35,6 @@ export default {
     },
     methods: {
         UpdateDaily(){
-            this.daily = {...this.daily, today: this.formatDate(this.daily.today)}
             this.$store.dispatch('updateDailyBook', {data: this.daily}).then(()=>{
                 this.showSuccessAlert();
                 this.$router.push({
@@ -43,7 +42,7 @@ export default {
                 })
             })
         }
-    },
+    }
 }
 </script>
 
